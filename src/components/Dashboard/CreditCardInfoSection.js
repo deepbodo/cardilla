@@ -1,8 +1,18 @@
-import React from 'react';
-import { Card, CardContent, Typography, TextField, Button } from '@material-ui/core';
+import React from "react";
+import {
+  Card,
+  CardContent,
+  Typography,
+  TextField,
+  Button,
+} from "@material-ui/core";
 
-const CreditCardInfoSection = ({ creditCardInfo, handleCreditCardInfoChange, handleCreditCardSubmit }) => {
-  const [error, setError] = React.useState(null);
+const CreditCardInfoSection = ({
+  creditCardInfo,
+  handleCreditCardInfoChange,
+  handleCreditCardSubmit,
+}) => {
+  const [error] = React.useState(null);
   return (
     <Card>
       <CardContent>
@@ -29,7 +39,7 @@ const CreditCardInfoSection = ({ creditCardInfo, handleCreditCardInfoChange, han
             label="Expiration Date"
             name="expirationDate"
             type="date" // Set input type as "date" for date picker
-            value={creditCardInfo.expirationDate.toISOString().split('T')[0]} // Format the date value for the input field
+            value={creditCardInfo.expirationDate.toISOString().split("T")[0]} // Format the date value for the input field
             onChange={handleCreditCardInfoChange}
             fullWidth
             required
@@ -50,7 +60,7 @@ const CreditCardInfoSection = ({ creditCardInfo, handleCreditCardInfoChange, han
           <Button type="submit" variant="contained" color="primary">
             Save Credit Card
           </Button>
-          {error && <div className='error'>{error}</div>}
+          {error && <div className="error">{error}</div>}
         </form>
       </CardContent>
     </Card>
