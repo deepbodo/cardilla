@@ -10,13 +10,9 @@ let isDatabaseConnected = false;
 // Middleware
 app.use(express.json());
 app.use(
-  cors(
-    CLIENT_ORIGIN
-      ? {
-          origin: CLIENT_ORIGIN,
-        }
-      : undefined,
-  ),
+  cors({
+    origin: true,
+  }),
 );
 
 // Routes
