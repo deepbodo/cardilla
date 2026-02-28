@@ -1,6 +1,7 @@
 # Cardilla
 
 Cardilla has:
+
 - Frontend: React app (GitHub Pages)
 - Backend: Express API in `server/` (Railway)
 
