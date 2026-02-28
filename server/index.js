@@ -5,6 +5,7 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 4000;
 const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN;
+let isDatabaseConnected = false;
 
 // Middleware
 app.use(express.json());
@@ -25,18 +26,35 @@ const creditCardRoutes = require("./routes/creditCardRoutes");
 const billsRoute = require("./routes/bills");
 
 app.get("/api/health", (req, res) => {
-  res.status(200).json({ status: "ok" });
+  res.status(200).json({
+    status: "ok",
+    database: isDatabaseConnected ? "connected" : "disconnected",
+  });
 });
 
 // MongoDB connection
 const MONGODB_URI = process.env.MONGODB_URI; // Retrieve the URI from the environment variable
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+
+if (MONGODB_URI) {
+  mongoose
+    .connect(MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .catch((error) => {
+      console.error("Failed to connect to MongoDB:", error.message);
+    });
+} else {
+  console.error("MONGODB_URI is not set.");
+}
+
 const db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+db.on("error", (error) => {
+  isDatabaseConnected = false;
+  console.error("MongoDB connection error:", error.message);
+});
 db.once("open", () => {
+  isDatabaseConnected = true;
   console.log("Connected to MongoDB database.");
 });
 
