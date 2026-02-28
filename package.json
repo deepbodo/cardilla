@@ -1,7 +1,7 @@
 {
   "proxy": "http://localhost:4000",
   "name": "cardilla.io",
-  "homepage": ".",
+  "homepage": "https://deepbodo.github.io/cardilla",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

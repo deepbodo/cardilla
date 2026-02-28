@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useBillsContext } from '../../hooks/useBillsContext';
-import '../../styles/pendingBills.css';
+import React, { useEffect, useState } from "react";
+import { useBillsContext } from "../../hooks/useBillsContext";
+import "../../styles/pendingBills.css";
+import { apiUrl } from "../../config/api";
 
 import {
   Card,
@@ -9,20 +10,20 @@ import {
   Select,
   FormControl,
   InputLabel,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
 const PendingBills = () => {
   const { bills, dispatch } = useBillsContext();
-  const [selectedCrypto, setSelectedCrypto] = useState('bitcoin'); // Default selected cryptocurrency is bitcoin, you can change it if needed
+  const [selectedCrypto, setSelectedCrypto] = useState("bitcoin"); // Default selected cryptocurrency is bitcoin, you can change it if needed
 
   useEffect(() => {
     // Fetch pending bills from the backend API
     const fetchBills = async () => {
-      const response = await fetch('/api/bills');
+      const response = await fetch(apiUrl("/api/bills"));
       const json = await response.json();
 
       if (response.ok) {
-        dispatch({ type: 'SET_BILLS', payload: json });
+        dispatch({ type: "SET_BILLS", payload: json });
       }
     };
     fetchBills();
@@ -40,14 +41,14 @@ const PendingBills = () => {
   };
 
   const handleDelete = async (billId) => {
-    const response = await fetch('/api/bills/' + billId, {
-      method: 'DELETE',
+    const response = await fetch(apiUrl("/api/bills/" + billId), {
+      method: "DELETE",
     });
 
     const json = await response.json();
 
     if (response.ok) {
-      dispatch({ type: 'DELETE_BILL', payload: json });
+      dispatch({ type: "DELETE_BILL", payload: json });
     }
   };
 
@@ -72,30 +73,30 @@ const PendingBills = () => {
 
   return (
     <div>
-      <div className='bills'>
+      <div className="bills">
         {/* Dropdown to select the cryptocurrency */}
-        <FormControl className='select-crypto'>
-          <InputLabel id='crypto-label'>Convert to</InputLabel>
+        <FormControl className="select-crypto">
+          <InputLabel id="crypto-label">Convert to</InputLabel>
           <Select
-            labelId='crypto-label'
+            labelId="crypto-label"
             value={selectedCrypto}
             onChange={handleCurrencyChange}
           >
-            <MenuItem value='bitcoin'>Bitcoin</MenuItem>
-            <MenuItem value='ethereum'>Ethereum</MenuItem>
-            <MenuItem value='ripple'>Ripple</MenuItem>
-            <MenuItem value='matic'>Matic</MenuItem>
+            <MenuItem value="bitcoin">Bitcoin</MenuItem>
+            <MenuItem value="ethereum">Ethereum</MenuItem>
+            <MenuItem value="ripple">Ripple</MenuItem>
+            <MenuItem value="matic">Matic</MenuItem>
             {/* Add more cryptocurrency options here */}
           </Select>
         </FormControl>
         {bills &&
           bills.map((bill) => (
-            <Card className='bill' key={bill._id}>
+            <Card className="bill" key={bill._id}>
               <CardContent>
                 <div>
                   <p>
-                    Amount: {bill.amount} INR |{' '}
-                    {convertToCrypto(bill.amount).toFixed(8)}{' '}
+                    Amount: {bill.amount} INR |{" "}
+                    {convertToCrypto(bill.amount).toFixed(8)}{" "}
                     {selectedCrypto.toUpperCase()}
                   </p>
                   <p>Due Date: {bill.dueDate}</p>

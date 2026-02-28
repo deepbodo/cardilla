@@ -1,44 +1,44 @@
 import { useState } from "react";
-import { useAuthContext } from '../hooks/useAuthContext';
+import { useAuthContext } from "../hooks/useAuthContext";
+import { apiUrl } from "../config/api";
 
-export const useSignup  = () => {
-    const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(null);
-    const { dispatch } = useAuthContext();  
+export const useSignup = () => {
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
+  const { dispatch } = useAuthContext();
 
-    const signup = async (email, password) => {
-         setIsLoading(true);
-         setError(null);
+  const signup = async (email, password) => {
+    setIsLoading(true);
+    setError(null);
 
-         const response = await fetch('/api/user/signup', {
-            method: "POST",
-            headers: {"Content-Type" : "application/json"},
-            body: JSON.stringify({email, password})
-         });
+    const response = await fetch(apiUrl("/api/user/signup"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
 
-         // Check the response status and headers
-         console.log("Response Status:", response.status);
-         console.log("Response Headers:", response.headers);
+    // Check the response status and headers
+    console.log("Response Status:", response.status);
+    console.log("Response Headers:", response.headers);
 
+    const json = await response.json();
 
-         const json = await response.json();
+    console.log("Response JSON Data:", json);
 
-         console.log("Response JSON Data:", json);
-
-         if (!response.ok) {
-            setIsLoading(false)
-            setError(json.error)
-         }
-
-         if (response.ok) {
-            // save the user to local storage
-            localStorage.setItem('user', JSON.stringify(json));
-
-            //update the auth context
-            dispatch({ type: 'LOGIN', payload: json })
-            setIsLoading(false)
-         }
+    if (!response.ok) {
+      setIsLoading(false);
+      setError(json.error);
     }
 
-    return { signup, isLoading, error }
-}
+    if (response.ok) {
+      // save the user to local storage
+      localStorage.setItem("user", JSON.stringify(json));
+
+      //update the auth context
+      dispatch({ type: "LOGIN", payload: json });
+      setIsLoading(false);
+    }
+  };
+
+  return { signup, isLoading, error };
+};

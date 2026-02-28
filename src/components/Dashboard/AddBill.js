@@ -1,7 +1,8 @@
 // components/AddBill.js
 
-import React, { useState } from 'react';
-import { useBillsContext } from '../../hooks/useBillsContext';
+import React, { useState } from "react";
+import { useBillsContext } from "../../hooks/useBillsContext";
+import { apiUrl } from "../../config/api";
 
 const AddBill = () => {
   const { dispatch } = useBillsContext();
@@ -12,9 +13,9 @@ const AddBill = () => {
   //   dueDate: '',
   //   currency: '',
   // });
-  const [amount, setAmount] = useState('');
-  const [dueDate, setDueDate] = useState('');
-  const [currency, setCurrency] = useState('');
+  const [amount, setAmount] = useState("");
+  const [dueDate, setDueDate] = useState("");
+  const [currency, setCurrency] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,26 +23,26 @@ const AddBill = () => {
     const bill = { amount, dueDate, currency };
     console.log(bill);
 
-    const response = await fetch('/api/bills', {
-      method: 'POST',
+    const response = await fetch(apiUrl("/api/bills"), {
+      method: "POST",
       body: JSON.stringify(bill),
       headers: {
-        "Content-Type" : "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     });
 
-    const json = await response.json()
+    const json = await response.json();
     if (!response.ok) {
       setError(json.error);
     }
 
     if (response.ok) {
-      setAmount('');
-      setDueDate('');
-      setCurrency('');
+      setAmount("");
+      setDueDate("");
+      setCurrency("");
       setError(null);
       console.log("Bill added successfully!", json);
-      dispatch({ type: 'CREATE_BILL', payload: json });
+      dispatch({ type: "CREATE_BILL", payload: json });
     }
   };
 
@@ -83,7 +84,7 @@ const AddBill = () => {
           />
         </div>
         <button type="submit">Add Bill</button>
-        {error && <div className='error'>{error}</div>}
+        {error && <div className="error">{error}</div>}
       </form>
     </div>
   );

@@ -1,36 +1,135 @@
-## Getting Started
+# Cardilla
 
-Create a project using this example:
+Cardilla has:
 
-```bash
-npx thirdweb create --template cra-javascript-starter
-```
+- Frontend: React app in this repository root
+- Backend: Express API in `server/`
 
-You can start editing the page by modifying `src/index.js`. The page auto-updates as you edit the file.
+## Local setup
 
-On `src/index.js`, you'll find our `ThirdwebProvider` wrapping your app, this is necessary for our [hooks](https://portal.thirdweb.com/react) and
-[UI Components](https://portal.thirdweb.com/ui-components) to work.
-
-### Deploy to IPFS
-
-Deploy a copy of your application to IPFS using the following command:
+1. Install frontend packages
 
 ```bash
-yarn deploy
+npm install
 ```
 
-## Learn More
+2. Install backend packages
 
-To learn more about thirdweb, React and CRA, take a look at the following resources:
+```bash
+cd server
+npm install
+```
 
-- [thirdweb React Documentation](https://docs.thirdweb.com/react) - learn about our React SDK.
-- [thirdweb TypeScript Documentation](https://docs.thirdweb.com/react) - learn about our JavaScript/TypeScript SDK.
-- [thirdweb Portal](https://docs.thirdweb.com/react) - check our guides and development resources.
-- [Create React App Documentation](https://facebook.github.io/create-react-app/docs/getting-started) - learn about CRA features.
-- [React documentation](https://reactjs.org/) - learn React.
+3. Create backend environment variables in `server/.env`
 
-You can check out [the thirdweb GitHub organization](https://github.com/thirdweb-dev) - your feedback and contributions are welcome!
+```env
+PORT=4000
+MONGODB_URI=your_mongodb_connection_string
+SECRET=your_jwt_secret
+CLIENT_ORIGIN=http://localhost:3000
+```
 
-## Join our Discord!
+4. Run backend
 
-For any questions, suggestions, join our discord at [https://discord.gg/thirdweb](https://discord.gg/thirdweb).
+```bash
+cd server
+npm run dev
+```
+
+5. Run frontend (from project root)
+
+```bash
+npm start
+```
+
+## Free deployment (recommended)
+
+## Simple deployment (no Render / no Vercel)
+
+Use:
+
+- Frontend: GitHub Pages (auto deploy from GitHub Actions)
+- Backend: Railway (deploy from GitHub)
+
+### 1) Backend on Railway
+
+1. Go to Railway and create a new project from GitHub repo `deepbodo/cardilla`.
+2. Set service root to `server`.
+3. Start command: `npm start`.
+4. Add environment variables:
+   - `MONGODB_URI`
+   - `SECRET`
+   - `CLIENT_ORIGIN` (set after frontend URL is ready)
+5. Deploy and copy backend URL (example: `https://cardilla-production.up.railway.app`).
+
+### 2) Frontend on GitHub Pages
+
+1. In GitHub repo settings, enable **Pages** and select **GitHub Actions** as source.
+2. In GitHub repo settings, add repository variable:
+   - `REACT_APP_API_URL=https://your-railway-url`
+3. Push to `main`.
+4. Workflow `Deploy Frontend to GitHub Pages` publishes the `build/` output.
+5. Frontend URL will be:
+   - `https://deepbodo.github.io/cardilla`
+
+### 3) Final connect
+
+1. Copy your GitHub Pages URL.
+2. Set Railway environment variable:
+
+```env
+CLIENT_ORIGIN=https://deepbodo.github.io
+```
+
+3. Redeploy Railway backend.
+
+### 4) Verify
+
+- Backend health check: `https://your-railway-url/api/health`
+- Frontend opens at: `https://deepbodo.github.io/cardilla`
+- Test signup/login and bills.
+
+### 1) Deploy backend on Render (free tier)
+
+1. Push this repo to GitHub.
+2. In Render, create a **Web Service** from your GitHub repo.
+   - Render Blueprint file is included: `render.yaml`
+3. Configure:
+   - Root Directory: `server`
+   - Build Command: `npm install`
+   - Start Command: `npm start`
+4. Add environment variables:
+   - `MONGODB_URI`
+   - `SECRET`
+   - `CLIENT_ORIGIN` (set this after frontend URL is known, then redeploy)
+5. Deploy and copy your backend URL (example: `https://cardilla-api.onrender.com`).
+
+### 2) Deploy frontend on Vercel (free tier)
+
+1. In Vercel, import the same GitHub repo.
+   - Vercel config file is included: `vercel.json`
+2. Configure:
+   - Framework: Create React App
+   - Root Directory: `.`
+   - Build Command: `npm run build`
+   - Output Directory: `build`
+3. Add environment variable:
+   - `REACT_APP_API_URL=https://your-render-url`
+4. Deploy.
+
+### 3) Connect frontend + backend
+
+1. Copy your Vercel frontend URL.
+2. In Render, set:
+
+```env
+CLIENT_ORIGIN=https://your-vercel-app.vercel.app
+```
+
+3. Redeploy backend.
+
+## Notes
+
+- Frontend API requests are now environment-based via `REACT_APP_API_URL`.
+- If `REACT_APP_API_URL` is empty, the app uses relative paths for local development.
+- Backend health check endpoint: `/api/health`.
