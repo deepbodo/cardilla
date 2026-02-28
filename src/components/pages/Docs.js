@@ -1,9 +1,9 @@
 import React from "react";
-import "../../styles/about.css";
-function About() {
+
+function Docs() {
   return (
     <div className="container">
-      <h1>About Cardilla</h1>
+      <h1>Documentation</h1>
       <p>
         Cardilla is a revolutionary decentralized credit card bill payment app
         designed specifically for crypto users with credit cards. It offers a
@@ -13,10 +13,7 @@ function About() {
         decentralized manner.
       </p>
       <ul>
-        <li>
-          Decentralized credit card bill payment platform tailored to crypto
-          users
-        </li>
+        <li>Decentralized credit card bill payment platform</li>
         <li>Secure bill payments using cryptocurrencies</li>
         <li>Enhanced privacy through blockchain-based data storage</li>
         <li>
@@ -26,12 +23,8 @@ function About() {
         <li>User-centric interface</li>
       </ul>
       <p>
-        Say goodbye to traditional hassles and hello to seamless bill payments
-        using cryptocurrencies. With privacy, security, and valuable rewards in
-        mind, Cardilla revolutionizes the way crypto users manage their credit
-        cards. Experience convenience, transparency, and peace of mind like
-        never before. Join us today and take control of your financial freedom!
-        🌟🔒
+        Experience convenience, transparency, and peace of mind like never
+        before. Join us today and take control of your financial freedom!
       </p>
       <p>
         Connect with us on LinkedIn:{" "}
@@ -47,4 +40,4 @@ function About() {
   );
 }
 
-export default About;
+export default Docs;
