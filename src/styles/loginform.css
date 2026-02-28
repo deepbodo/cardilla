@@ -1,55 +1,149 @@
-/* styles/loginform.css */
-.login {
-max-width: 400px;
-margin: 0 auto;
-padding: 50px;
-border: 2px solid #ccc;
-border-radius: 5px;
-position: absolute;
-left: 40%;
-top: 30%;
-font-size: 1.3rem;
-margin: 0 auto;
+/* ========== Auth Pages — Login ========== */
+.auth-page {
+    min-height: 100vh;
+    background: var(--bg-primary);
 }
 
-h3 {
-text-align: center;
-padding-bottom: 10px;
+.auth-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 72px);
+    padding: var(--space-xl);
 }
 
-label {
-display: block;
-margin-bottom: 5px;
-font-weight: bold;
-color: #333;
-padding: 5px;
+.auth-form {
+    width: 100%;
+    max-width: 420px;
+    padding: var(--space-2xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+    animation: fadeInUp 0.5s ease-out;
+    position: relative;
+    overflow: hidden;
 }
 
-input {
-width: 100%;
-padding: 10px;
-margin-bottom: 15px;
-border: 1px solid #ccc;
-border-radius: 5px;
-transition: border-color 0.3s ease-in-out;
+.auth-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent-gradient);
 }
 
-input:focus {
-border-color: #4CAF50; /* Green border on focus */
+.auth-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
 }
 
-button {
-background-color: #4CAF50; /* Green background */
-color: white;
-padding: 15px 20px;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-width: 100%;
-transition: background-color 0.3s ease-in-out;
-font-size: 1rem;
+.auth-header h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-xs);
+    letter-spacing: -0.5px;
 }
 
-button:hover {
-background-color: #45a049; /* Slightly darker green on hover */
+.auth-header p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.auth-field {
+    margin-bottom: var(--space-lg);
+}
+
+.auth-field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+.auth-field input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    transition: all var(--transition-fast);
+    outline: none;
+}
+
+.auth-field input::placeholder {
+    color: var(--text-muted);
+}
+
+.auth-field input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.auth-submit {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--accent-gradient);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    margin-top: var(--space-sm);
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+}
+
+.auth-submit:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(124, 58, 237, 0.4);
+}
+
+.auth-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.auth-error {
+    color: var(--error);
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm) var(--space-md);
+    margin-top: var(--space-md);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: var(--space-lg);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.auth-switch a {
+    color: var(--text-accent);
+    font-weight: 500;
+}
+
+.auth-switch a:hover {
+    color: var(--accent-secondary);
+}
+
+@media (max-width: 480px) {
+    .auth-form {
+        margin: var(--space-md);
+        padding: var(--space-xl);
+    }
 }

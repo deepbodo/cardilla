@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
-import '../../styles/loginform.css'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import '../../styles/loginform.css';
 import { useLogin } from '../../hooks/useLogin';
+import Navbar from './Navbar';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -8,43 +10,49 @@ function Login() {
     const { login, isLoading, error } = useLogin();
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); 
-        console.log(email, password)
-
+        e.preventDefault();
         await login(email, password);
-    }
-  return (
-    <div>
-        <div className="header">
-                <img src="/images/logo.jpg" alt="thirdweb logo" />
-                <div className="details">
-                    <ul className="navbar-items">
-                        <li>Home</li>
-                        <li>Features</li>
-                        <li>About</li>
-                        <li>Docs</li>
-                    </ul>
-                </div>
+    };
+
+    return (
+        <div className="auth-page">
+            <Navbar />
+            <div className="auth-wrapper">
+                <form className="auth-form" onSubmit={handleSubmit}>
+                    <div className="auth-header">
+                        <h3>Welcome Back</h3>
+                        <p>Sign in to your Cardilla account</p>
+                    </div>
+                    <div className="auth-field">
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                            placeholder="you@example.com"
+                        />
+                    </div>
+                    <div className="auth-field">
+                        <label>Password</label>
+                        <input
+                            type="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                            placeholder="Enter your password"
+                        />
+                    </div>
+                    <button className="auth-submit" type="submit" disabled={isLoading}>
+                        {isLoading ? 'Signing in...' : 'Sign In'}
+                    </button>
+                    {error && <div className="auth-error">{error}</div>}
+                    <p className="auth-switch">
+                        Don't have an account?{' '}
+                        <Link to="/signup">Sign up</Link>
+                    </p>
+                </form>
+            </div>
         </div>
-        <form className='login' onSubmit={handleSubmit}>
-            <h3>Log In</h3>
-            <label>Email:</label>
-            <input 
-                type='email'
-                onChange={(e) => setEmail(e.target.value)}
-                value = {email}
-            />
-            <label>password:</label>
-            <input 
-                type='password'
-                onChange={(e) => setPassword(e.target.value)}
-                value = {password}
-            />
-            <button type='submit' disabled={isLoading}>Log In</button>
-            {error && <div className='error'>{error}</div>}
-        </form>
-    </div>
-  )
+    );
 }
 
 export default Login;

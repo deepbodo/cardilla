@@ -1,80 +1,84 @@
+/* ========== Payment Form ========== */
 .form {
-background-color: #15172b;
-border-radius: 20px;
-box-sizing: border-box;
-height: 600px;
-padding: 50px;
-width: 30vw;
-position: absolute;
-top: 30%;
-right: 10%;
+    background: var(--bg-surface);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-subtle);
+    box-sizing: border-box;
+    padding: var(--space-2xl);
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: var(--shadow-card);
+}
+
+.form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent-gradient);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 
 .input-container {
-height: 50px;
-position: relative;
-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    width: 100%;
 }
 
-
 .input {
-background-color: #303245;
-border-radius: 12px;
-border: 0;
-box-sizing: border-box;
-color: #eee;
-font-size: 18px;
-height: 100%;
-outline: 0;
-padding: 4px 20px 0;
-width: 100%;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+    box-sizing: border-box;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    outline: none;
+    transition: all var(--transition-fast);
+    height: auto;
+}
+
+.input::placeholder {
+    color: var(--text-muted);
+}
+
+.input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
 .cut {
-background-color: #15172b;
-border-radius: 10px;
-height: 20px;
-left: 20px;
-position: absolute;
-top: -20px;
-transform: translateY(0);
-transition: transform 200ms;
-width: 76px;
-}
-
-.input:focus ~ .cut,
-.input:not(:placeholder-shown) ~ .cut {
-transform: translateY(8px);
-}
-
-.input:focus ~ .placeholder,
-.input:not(:placeholder-shown) ~ .placeholder {
-transform: translateY(-30px) translateX(10px) scale(0.75);
-}
-
-.input:not(:placeholder-shown) ~ .placeholder {
-color: #808097;
-}
-
-.input:focus ~ .placeholder {
-color: #dc2f55;
+    display: none;
 }
 
 .submit {
-background-color: #08d;
-border-radius: 12px;
-border: 0;
-box-sizing: border-box;
-color: #eee;
-cursor: pointer;
-font-size: 18px;
-height: 50px;
-margin-top: 38px;
-/* outline: 0; */
-text-align: center;
-width: 100%;
+    background: var(--accent-gradient);
+    border-radius: var(--radius-md);
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    padding: 0.8rem;
+    width: 100%;
+    margin-top: var(--space-sm);
+    transition: all var(--transition-fast);
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+}
+
+.submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(124, 58, 237, 0.4);
 }
 
 .submit:active {
-background-color: #06b;
+    transform: translateY(0);
 }

@@ -14,12 +14,12 @@ function Navbar() {
   };
 
   return (
-    <div className="container">
+    <div className="nav-container">
       <div className="header">
-        <img
-          src={process.env.PUBLIC_URL + "/images/logo.jpg"}
-          alt="Cardilla logo"
-        />
+        <Link to="/" className="nav-brand">
+          <span className="nav-brand-icon">💳</span>
+          Cardilla
+        </Link>
         <div className="details">
           <ul className="navbar-items">
             <Link to="/">
@@ -48,7 +48,7 @@ function Navbar() {
               <button className="reg-btn">Login</button>
             </Link>
             <Link to="/signup">
-              <button className="reg-btn">Signup</button>
+              <button className="reg-btn">Sign Up</button>
             </Link>
           </div>
         )}
