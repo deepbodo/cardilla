@@ -1,0 +1,194 @@
+/* ========== Content Pages (About, Features, Docs) ========== */
+.content-page {
+    min-height: 100vh;
+    background: var(--bg-primary);
+}
+
+.content-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--space-3xl) var(--space-xl) var(--space-4xl);
+}
+
+/* Hero */
+.content-hero {
+    text-align: center;
+    margin-bottom: var(--space-4xl);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.content-hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+}
+
+.content-hero-sub {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    max-width: 550px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* Sections */
+.content-sections {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+}
+
+.content-section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.content-section h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border-subtle);
+    letter-spacing: -0.3px;
+}
+
+.content-section p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-weight: 300;
+    font-size: 0.95rem;
+    margin-bottom: var(--space-md);
+}
+
+/* List */
+.content-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.content-list-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.content-list-item:hover {
+    border-color: var(--border-accent);
+    background: var(--bg-card);
+}
+
+.list-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+/* Link button */
+.content-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.7rem 1.6rem;
+    background: var(--accent-gradient);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+    margin-top: var(--space-sm);
+}
+
+.content-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(124, 58, 237, 0.4);
+    color: white;
+}
+
+/* ========== Features Showcase Grid ========== */
+.features-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-4xl);
+}
+
+.showcase-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.showcase-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent-gradient);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.showcase-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-glow);
+}
+
+.showcase-card:hover::before {
+    opacity: 1;
+}
+
+.showcase-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+}
+
+.showcase-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.showcase-card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: var(--space-2xl) var(--space-md);
+    }
+
+    .features-showcase {
+        grid-template-columns: 1fr;
+    }
+}

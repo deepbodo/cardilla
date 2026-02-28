@@ -1,61 +1,6 @@
-/* styles/loginform.css */
-.signup {
-max-width: 400px;
-padding: 50px;
-border: 2px solid #ccc;
-border-radius: 5px;
-position: absolute;
-left: 40%;
-top: 30%;
-font-size: 1.3rem;
-margin: 0 auto;
-}
+/* ========== Auth Pages — Signup ========== */
+/* Shares styles with loginform.css via shared class names */
+/* This file exists for any signup-specific overrides */
 
-h3 {
-text-align: center;
-padding: 20px 10px;
-}
-
-label {
-display: block;
-margin-bottom: 5px;
-font-weight: bold;
-color: #333;
-padding: 5px;
-}
-
-input {
-width: 100%;
-padding: 13px;
-margin-bottom: 15px;
-border: 1px solid #ccc;
-border-radius: 5px;
-transition: border-color 0.3s ease-in-out;
-
-}
-
-input:focus {
-border-color: #4CAF50; /* Green border on focus */
-}
-
-button {
-background-color: #4CAF50; /* Green background */
-color: white;
-padding: 15px 20px;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-width: 100%;
-transition: background-color 0.3s ease-in-out;
-}
-
-button:hover {
-background-color: #45a049; /* Slightly darker green on hover */
-}
-
-.error {
-color: red;
-margin-top: 10px;
-text-align: center;
-font-weight: bold;
-}
+/* The .auth-page, .auth-wrapper, .auth-form, .auth-field, etc.
+   are defined in loginform.css and shared between Login and Signup */

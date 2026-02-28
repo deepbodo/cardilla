@@ -1,0 +1,221 @@
+/* ========== Dashboard Dark Theme ========== */
+
+/* Override MUI AppBar */
+.MuiAppBar-root {
+    background: rgba(6, 6, 15, 0.95) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    box-shadow: none !important;
+}
+
+.MuiToolbar-root {
+    min-height: 64px !important;
+}
+
+/* Override MUI Drawer */
+.MuiDrawer-paper {
+    background: var(--bg-secondary) !important;
+    border-right: 1px solid var(--border-subtle) !important;
+    color: var(--text-primary) !important;
+}
+
+.MuiListItem-root {
+    color: var(--text-secondary) !important;
+    border-radius: 8px !important;
+    margin: 2px 8px !important;
+    transition: all 0.2s !important;
+}
+
+.MuiListItem-root:hover {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+}
+
+.MuiListItemIcon-root {
+    color: var(--text-muted) !important;
+    min-width: 40px !important;
+}
+
+.MuiListItem-root:hover .MuiListItemIcon-root {
+    color: var(--accent-primary) !important;
+}
+
+.MuiDivider-root {
+    background: var(--border-subtle) !important;
+}
+
+/* Override MUI Cards */
+.MuiCard-root {
+    background: var(--bg-surface) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 16px !important;
+    box-shadow: var(--shadow-card) !important;
+    color: var(--text-primary) !important;
+}
+
+.MuiCardContent-root {
+    padding: 24px !important;
+}
+
+/* Typography in cards */
+.MuiTypography-root {
+    color: var(--text-primary) !important;
+}
+
+.MuiTypography-h6 {
+    font-weight: 700 !important;
+    letter-spacing: -0.3px !important;
+    margin-bottom: 12px !important;
+    font-size: 1.15rem !important;
+}
+
+/* MUI TextField overrides */
+.MuiTextField-root .MuiInputBase-root {
+    color: var(--text-primary) !important;
+    background: var(--bg-card) !important;
+    border-radius: 10px !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-notchedOutline {
+    border-color: var(--border-light) !important;
+}
+
+.MuiTextField-root .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: var(--accent-primary) !important;
+}
+
+.MuiTextField-root .Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: var(--accent-primary) !important;
+}
+
+.MuiTextField-root .MuiInputLabel-root {
+    color: var(--text-secondary) !important;
+}
+
+.MuiTextField-root .MuiInputLabel-root.Mui-focused {
+    color: var(--accent-primary) !important;
+}
+
+/* MUI Button overrides */
+.MuiButton-containedPrimary {
+    background: var(--accent-gradient) !important;
+    border-radius: 10px !important;
+    padding: 10px 24px !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3) !important;
+    transition: all 0.2s !important;
+    margin-top: 16px !important;
+}
+
+.MuiButton-containedPrimary:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 24px rgba(124, 58, 237, 0.4) !important;
+}
+
+/* MUI Select/FormControl */
+.MuiFormControl-root {
+    min-width: 200px !important;
+}
+
+.MuiSelect-root {
+    color: var(--text-primary) !important;
+}
+
+.MuiInputLabel-root {
+    color: var(--text-secondary) !important;
+}
+
+/* Dashboard main content area */
+.MuiContainer-root {
+    padding-top: 16px !important;
+}
+
+/* ========== Bill Cards ========== */
+.bill {
+    margin: 16px 0;
+    transition: all 0.2s;
+}
+
+.bill:hover {
+    border-color: var(--border-accent) !important;
+}
+
+.bill p {
+    color: var(--text-secondary) !important;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.bill button {
+    background: var(--accent-gradient);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.bill button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+}
+
+.bill span {
+    color: var(--error);
+    font-size: 0.8rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.bill span:hover {
+    opacity: 1;
+}
+
+.bill hr {
+    border: none;
+    border-top: 1px solid var(--border-subtle);
+    margin: 12px 0;
+}
+
+/* ========== Add Bill Form ========== */
+.MuiCard-root form>div {
+    margin-bottom: 12px;
+}
+
+.MuiCard-root form label {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.MuiCard-root form input {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.MuiCard-root form input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.MuiCard-root form button[type="submit"] {
+    margin-top: 8px;
+}
+
+.select-crypto {
+    padding: 10px 0;
+}

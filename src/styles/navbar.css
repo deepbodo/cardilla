@@ -1,74 +1,189 @@
-/* Logo */
+/* ========== Navbar ========== */
+.nav-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: rgba(6, 6, 15, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
 .header {
     width: 100%;
-    height: 100px;
-    padding: 0;
-  }
-  
-.header > img {
-    width: 250px;
+    max-width: 1280px;
+    margin: 0 auto;
+    height: 72px;
+    padding: 0 var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* Logo */
+.header>img,
+.nav-logo {
+    width: 140px;
     height: auto;
-    position: absolute;
-    left: 50px;
+    filter: brightness(1.1);
+    transition: opacity var(--transition-fast);
 }
 
-.connect {
-    margin-bottom: 2rem;
-    position: absolute;
-    top: 50px;
-    right: 70px;
+.header>img:hover,
+.nav-logo:hover {
+    opacity: 0.8;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
     font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
 }
 
-/* Navbar items */
+.nav-brand-icon {
+    font-size: 1.6rem;
+}
+
+/* Nav Links */
+.details {
+    display: flex;
+    align-items: center;
+}
+
 .navbar-items {
     display: flex;
     list-style: none;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding-top: 30px;
+    gap: var(--space-xs);
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-items a {
+    text-decoration: none;
 }
 
 .navbar-items li {
-    padding: 0px 20px;
-    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    position: relative;
+    transition: color var(--transition-fast);
+    border-radius: var(--radius-sm);
 }
 
-/* buttons */
+.navbar-items li::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--accent-gradient);
+    border-radius: var(--radius-full);
+    transition: width var(--transition-base);
+}
 
+.navbar-items li:hover {
+    color: var(--text-primary);
+}
+
+.navbar-items li:hover::after {
+    width: 60%;
+}
+
+/* Auth Buttons */
 .user-login {
     display: flex;
-    position: absolute;
-    top: 30px;
-    right: 70px;
+    align-items: center;
+    gap: var(--space-sm);
+    position: static;
 }
 
+.user-login span {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.user-login button,
 .reg-btn {
-    padding: 15px 30px;
-    margin: 5px ;
-    border-radius: 10px;
-    border-style: hidden;
-    font-size: 16px;
+    padding: 0.55rem 1.4rem;
+    border-radius: var(--radius-full);
+    border: none;
+    font-size: 0.85rem;
+    font-weight: 600;
     cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: 'Inter', sans-serif;
 }
 
-.reg-btn > button {
-    margin-left: 10px;
+.user-login a:first-child .reg-btn {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
 }
 
-.reg-btn:hover {
-    background-color: #45a049;
+.user-login a:first-child .reg-btn:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: rgba(124, 58, 237, 0.08);
 }
 
-.log-btn {
-    padding: 8px 20px;
-    margin: 5px;
-    border-radius: 5px;
-    border-style: hidden;
-    font-size: 1rem;
+.user-login a:last-child .reg-btn {
+    background: var(--accent-gradient);
+    color: white;
+    border: none;
+    box-shadow: 0 2px 12px rgba(124, 58, 237, 0.3);
 }
 
+.user-login a:last-child .reg-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+}
 
-/* Navbar pages */
+/* Logout button */
+.user-login>button {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-light);
+}
 
+.user-login>button:hover {
+    color: var(--error);
+    border-color: var(--error);
+    background: rgba(239, 68, 68, 0.08);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header {
+        padding: 0 var(--space-md);
+        height: 64px;
+    }
+
+    .navbar-items {
+        display: none;
+    }
+
+    .user-login {
+        gap: var(--space-xs);
+    }
+
+    .reg-btn {
+        padding: 0.45rem 1rem;
+        font-size: 0.8rem;
+    }
+}

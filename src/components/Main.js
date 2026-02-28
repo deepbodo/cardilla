@@ -1,5 +1,4 @@
 import "../styles/main.css";
-// import About from "../components/pages/About";
 
 export default function Main() {
   return (
@@ -8,32 +7,42 @@ export default function Main() {
         <div className="main-container">
           <div className="main-content">
             <h1>Cardilla</h1>
-            <p>Now Pay Your Credit Card Bills without Hastle with Cardilla</p>
+            <p>
+              Pay your credit card bills seamlessly with cryptocurrency.
+              Decentralized, secure, and hassle-free.
+            </p>
             <nav className="socials">
               <a
                 href="https://www.twitter.com/"
                 target="_blank"
                 rel="noreferrer"
+                title="Twitter"
               >
                 <img
                   src={`${process.env.PUBLIC_URL}/images/twitter.png`}
-                  alt="twitter"
+                  alt="Twitter"
                 />
               </a>
               <a
                 href="https://github.com/Shyam-12/cardilla.io"
                 target="_blank"
                 rel="noreferrer"
+                title="GitHub"
               >
                 <img
                   src={`${process.env.PUBLIC_URL}/images/github.png`}
-                  alt="twitter"
+                  alt="GitHub"
                 />
               </a>
-              <a href="https://discord.com/" target="_blank" rel="noreferrer">
+              <a
+                href="https://discord.com/"
+                target="_blank"
+                rel="noreferrer"
+                title="Discord"
+              >
                 <img
                   src={`${process.env.PUBLIC_URL}/images/discord.png`}
-                  alt="twitter"
+                  alt="Discord"
                 />
               </a>
             </nav>
