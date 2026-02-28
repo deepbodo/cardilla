@@ -16,18 +16,7 @@ export default function Home() {
       <HashRouter>
         <div className="pages">
           <Routes>
-            {!user && <Route path="/" element={<Main />} />}
-
-            {/* { user && (
-              <Route
-                path="/"
-                element={<user ? Dashboard /> : <Navigate to="/login" />}
-              />  
-            )} */}
-            <Route
-              path="/"
-              element={user ? <Dashboard /> : <Navigate to="/" />}
-            />
+            <Route path="/" element={user ? <Dashboard /> : <Main />} />
             <Route
               path="/signup"
               element={!user ? <Signup /> : <Navigate to="/" />}
@@ -36,6 +25,7 @@ export default function Home() {
               path="/login"
               element={!user ? <Login /> : <Navigate to="/" />}
             />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>
       </HashRouter>
