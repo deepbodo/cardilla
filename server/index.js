@@ -33,7 +33,7 @@ app.get("/api/health", (req, res) => {
 });
 
 // MongoDB connection
-const MONGODB_URI = process.env.MONGODB_URI; // Retrieve the URI from the environment variable
+const MONGODB_URI = process.env.MONGODB_URI || process.env.MONGODB_URL;
 
 if (MONGODB_URI) {
   mongoose
@@ -45,7 +45,7 @@ if (MONGODB_URI) {
       console.error("Failed to connect to MongoDB:", error.message);
     });
 } else {
-  console.error("MONGODB_URI is not set.");
+  console.error("MONGODB_URI/MONGODB_URL is not set.");
 }
 
 const db = mongoose.connection;
